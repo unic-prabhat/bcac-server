@@ -9,6 +9,8 @@ const result = require('dotenv').config();
 const RouteSuperadmin = require('./routes/superadmin');
 const RouteAdmin = require('./routes/admin');
 const RouteEvent = require('./routes/event');
+const RouteParticipant = require('./routes/participant');
+
 
 
 
@@ -33,6 +35,7 @@ app.use(cors());
 app.use('/api/superadmin',RouteSuperadmin);
 app.use('/api/admin',RouteAdmin);
 app.use('/api/event',RouteEvent);
+app.use('/api/participant',RouteParticipant);
 
 
 app.use(function(req, res, next){

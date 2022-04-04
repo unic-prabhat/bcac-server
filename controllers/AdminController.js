@@ -2,25 +2,39 @@ const { response } = require('express');
 const Admin = require('../models/Admin');
 
 
-const login =(req,res)=>{
+const login = (req,res) =>{
 
-
-    Admin.findOne({email:req.body.email,password:req.body.password},(err,doc)=>{
-        if(doc===null){
-            res.json({
-                data:false,
-                message:'invalid'
-            })
+    Admin.findOne({email:req.body.email})
+    .then(response=>{
+      if(response===null){
+  
+        res.json({
+          response:false,
+          data:'Wrong email'
+        })
+  
+      }else{
+  
+        if(response.password===req.body.password){
+  
+          res.json({
+            response:true,
+            data:response
+          })
+  
         }else{
-            res.json({
-                data:doc,
-                message:'valid'
-            })
+  
+          res.json({
+            response:false,
+            data:'Wrong password'
+          })
         }
+  
+  
+      }
     })
-
-    
-}
+  
+  }
 
 const store = (req,res) =>{
 
